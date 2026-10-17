@@ -9,7 +9,17 @@ Fingerprint:2cbcc8ca
 
 ## AI-use declaration
 
-(About half a page: which assistants or tools you used and for what. If you used none, say so.)
+## Заявление об использовании ИИ
+
+Во время мидки использовал одного ИИ-помощника: Клода, не использовал никаких других инструментов ИИ кроме нее
+
+Сначала я вставил свои данные (DATA.md, таблицу рангов, результаты документа) в чат и написал свою первую версию ANSWERS.md. Затем я отправил свои ответы Клоду и попросил его проверить их. Он обнаружил несколько ошибок в моей работе. Стоимость конвейера H была неверной, потому что я неправильно посчитал токены изображений. Общая точность была немного неточной. Вопрос 3 был неверным, вопрос 5 был пустым, а объяснение в вопросе 1 было неверным. Некоторые из моих чисел в части 1 также не соответствовали данными
+
+После этого Клод пересчитал числа с помощью Python и предоставил мне исправленную версию ответов. Он также переписал решение в 1d, следующее измерение в 1e, примечание в 2b и строки «Почему» в части 3. Он показал мне, как примечание должно соответствовать рубрике README. Я прочитал эти тексты и решил их использовать
+
+Чтобы проверить цифры самостоятельно, я запустил скрипт в своем блокноте Colab для проверки полноты ответа, MRR и интервалов Вильсона. Результаты совпали с результатами Клода. Я также проверил свой отпечаток пальца в файле DATA.md.
+
+Я понимаю, что несу ответственность за все данные в этом файле, и могу объяснить свои ответы на устном экзамене )
 
 ## Part 1: Retrieval and cost decision
 
@@ -82,25 +92,25 @@ Residual risk: low accuracy on degraded Kazakh scans. Send those, and low-confid
 
 ### Q1
 
-Number:
-Why (at most 40 words):
+Number: 2.63
+Why (at most 40 words): Output tokens cost 6× input tokens, and KK grows only 1.6× in output versus 3.1× in input. Output weighs more in the EN bill, so the cost ratio (2.63) falls below the token ratio (2.96)
 
 ### Q2
 
-Number:
-Why (at most 40 words):
+Number: 447
+Why (at most 40 words): Yes. The sentence spans e5 tokens 447–467, inside the 512 limit, so the chunk is retrievable. Only the last ~14 tokens of the chunk are cut, silently: no error appears
 
 ### Q3
 
-Number:
-Why (at most 40 words):
+Number: 43.1
+Why (at most 40 words): Top-p cuts the unlikely tail (here Easter) and renormalises the rest; relative odds stay the same. Lower temperature reshapes every probability, sharpening the distribution towards Monday
 
 ### Q4
 
-Number:
-Why (at most 40 words):
+Number: 11
+Why (at most 40 words): The public leaderboard prefers X (75 vs 69) because it rewards guessing and never rewards "I don't know". That teaches models to guess and hallucinate. With a wrong-answer penalty, Y wins
 
 ### Q5
 
-Number:
-Why (at most 40 words):
+Number: 13.65
+Why (at most 40 words): By this criterion it is over-trained (273 vs 20 tokens per parameter). Chinchilla argued that GPT-3-like models were under-trained: too large for their data, so smaller models with more tokens are better
